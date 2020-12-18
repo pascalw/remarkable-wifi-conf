@@ -34,7 +34,7 @@ echo '' | python ./remarkable_wifi_conf.py
 
 The script will ask your WiFi SSID (network name) and password and print a `wifinetworks` section. Now SSH into your Remarkable and open `/home/root/.config/remarkable/xochitl.conf` with a text editor. Scroll down until you find a `[wifinetworks]` section and append the generated line containing the WiFi configuration.
 
-Now restart the Remarkable system (`systemctl restart xochitl`) and presto! Your Remarkable will be able to connect to your WiFi network. Depending on how many WiFi networks you have configured you might need to go into the system settings to select your WiFi network.
+Now restart the Remarkable system (`systemctl restart xochitl`) and presto! Your Remarkable will be able to connect to your WiFi network. Depending on how many WiFi networks you have configured you might need to go into the system settings to select your WiFi network. You will not have to enter a password at this point.
 
 ## Automated process
 
@@ -43,7 +43,7 @@ If you trust this script and my Linux fu you can run the oneliner below.
 Note that if you haven't set up SSH keys, you'll be prompted for your password 3 times.
 
 ```sh
-export remarkable=remarkable; ssh $remarkable 'cp /home/root/.config/remarkable/xochitl.conf{,.bak} && cat /home/root/.config/remarkable/xochitl.conf' | python ./remarkable_wifi_conf.py > >(ssh $remarkable 'cat > /tmp/rmwifi')  && ssh $remarkable 'mv /tmp/rmwifi /home/root/.config/remarkable/xochitl.conf && systemctl restart xochitl'
+export remarkable=remarkable; ssh $remarkable 'cp /home/root/.config/remarkable/xochitl.conf{,.bak} && cat /home/root/.config/remarkable/xochitl.conf' | python ./remarkable_wifi_conf.py > >(ssh $remarkable 'cat > /tmp/rmwifi') && ssh $remarkable 'mv /tmp/rmwifi /home/root/.config/remarkable/xochitl.conf && systemctl restart xochitl'
 ```
 
 This will:
@@ -53,4 +53,8 @@ This will:
 3. Update `xochitl.conf` with a configuration for your network.
 4. Restart the xochitl service so the configuration changes become effective.
 
-Presto! Your Remarkable will be able to connect to your WiFi network. Depending on how many WiFi networks you have configured you might need to go into the system settings to select your WiFi network.
+Presto! Your Remarkable will be able to connect to your WiFi network. Depending on how many WiFi networks you have configured you might need to go into the system settings to select your WiFi network. You will not have to enter a password at this point.
+
+## Credits
+
+Credits to GitHub user Evidlo for their example [here](https://github.com/Evidlo/examples/blob/b5305ee8db00e4b0b43bd35a6b01228290172502/python/xochitl_conf.py).
