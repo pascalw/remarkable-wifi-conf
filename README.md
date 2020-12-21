@@ -7,7 +7,7 @@ Well, until this tool :-)
 
 ## Prerequisites
 
-* SSH access to your Remarkable. See [remarkablewifi.com](https://remarkablewiki.com/tech/ssh) for details.
+* SSH access to your Remarkable. See [remarkablewiki.com](https://remarkablewiki.com/tech/ssh) for details.
 * Python >= 3
 
 ## Usage
