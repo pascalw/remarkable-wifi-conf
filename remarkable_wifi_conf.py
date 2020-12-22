@@ -12,7 +12,7 @@ def create_tmp_file(contents):
 
 def prompt(tty, label, read_fn):
     while True:
-        tty.write(f'{label}: ')
+        tty.write(f'{label}: '.encode())
         tty.flush()
 
         value = read_fn().rstrip()
@@ -35,8 +35,8 @@ def main():
         tmp = create_tmp_file(sys.stdin.read())
 
         # Read input
-        tty = open('/dev/tty', 'r+')
-        ssid = prompt(tty, 'SSID', tty.readline)
+        tty = open('/dev/tty', 'rb+', buffering=0)
+        ssid = prompt(tty, 'SSID', lambda: tty.readline().decode())
         password = prompt(tty, 'Password', lambda: getpass.getpass(prompt=''))
 
         # Write Remarkable config file (QT settings)
