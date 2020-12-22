@@ -9,6 +9,7 @@ Well, until this tool :-)
 
 * SSH access to your Remarkable. See [remarkablewiki.com](https://remarkablewiki.com/tech/ssh) for details.
 * Python >= 3
+* Only tested on MacOS and Linux. For Windows use WSL if you can.
 
 ## Usage
 
